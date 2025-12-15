@@ -1,0 +1,586 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <h1> This is my first website </h1>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Travel Plan</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/fontawesome.css">
+  <link rel="stylesheet" href="assets/css/templatemo-woox-travel.css">
+  <link rel="stylesheet" href="assets/css/owl.css">
+  <link rel="stylesheet" href="assets/css/animate.css">
+  <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+  <style>
+  html { scroll-behavior: smooth; }
+  
+  /* Banner Fix */
+  .content-slider {
+    position: relative;
+    height: 500px;
+    overflow: hidden;
+  }
+  
+  .slider {
+    display: flex;
+    width: 300%;
+    height: 100%;
+    transition: transform 0.8s ease-in-out;
+  }
+  
+  .sec-1-input {
+    display: none;
+  }
+  
+  /* Banner Radio Button Controls */
+  #banner1:checked ~ .slider {
+    transform: translateX(0);
+  }
+  
+  #banner2:checked ~ .slider {
+    transform: translateX(-33.333%);
+  }
+  
+  #banner3:checked ~ .slider {
+    transform: translateX(-66.666%);
+  }
+  
+  .banner {
+    width: 33.333%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    position: relative;
+  }
+  
+  .banner::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+   
+  }
+  
+  .banner-inner-wrapper {
+    position: relative;
+    z-index: 2;
+    width: 80%;
+    max-width: 800px;
+  }
+  
+  /* Banner Text Fix */
+  .main-caption {
+    text-align: center;
+  }
+  
+  .main-caption h2 {
+    font-size: 1.8rem;
+    font-weight: 300;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    line-height: 1.4;
+  }
+  
+  .main-caption h1 {
+    font-size: 4rem;
+    font-weight: 600;
+    margin: 20px 0;
+    line-height: 1.2;
+    text-transform: uppercase;
+  }
+  
+  .main-caption p {
+    font-size: 1.2rem;
+    font-weight: 300;
+    line-height: 1.6;
+    margin-top: 20px;
+    opacity: 0.9;
+  }
+  
+  /* Banner Images */
+  #top-banner-1 { 
+    background-image: url('https://images.unsplash.com/photo-1519046904884-53103b34b206?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); 
+  }
+  #top-banner-2 { 
+    background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); 
+  }
+  #top-banner-3 { 
+    background-image: url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'); 
+  }
+  
+  /* Banner Navigation */
+  .slider-nav {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 15px;
+    z-index: 3;
+  }
+  
+  .slider-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.5);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .slider-dot:hover {
+    background: rgba(255,255,255,0.8);
+  }
+  
+  /* Active slide dot */
+  #banner1:checked ~ .slider-nav label[for="banner1"],
+  #banner2:checked ~ .slider-nav label[for="banner2"],
+  #banner3:checked ~ .slider-nav label[for="banner3"] {
+    background: rgba(255,255,255,1);
+    transform: scale(1.2);
+  }
+  
+  /* Package Cards */
+  .package-card {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    margin-bottom: 30px;
+  }
+  
+  .package-card:hover {
+    transform: translateY(-10px);
+  }
+  
+  .package-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .package-content {
+    padding: 20px;
+  }
+  
+  .package-price {
+    color: #ff4a52;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 10px 0;
+  }
+  
+  .package-features {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0;
+  }
+  
+  .package-features li {
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .package-features li:last-child {
+    border-bottom: none;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .content-slider {
+      height: 400px;
+    }
+    
+    .main-caption h1 {
+      font-size: 2.5rem;
+    }
+    
+    .main-caption h2 {
+      font-size: 1.2rem;
+    }
+    
+    .main-caption p {
+      font-size: 1rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .content-slider {
+      height: 300px;
+    }
+    
+    .main-caption h1 {
+      font-size: 2rem;
+    }
+    
+    .main-caption h2 {
+      font-size: 1rem;
+    }
+    
+    .main-caption p {
+      font-size: 0.9rem;
+    }
+  }
+</style>
+
+ 
+
+<body>
+
+<!-- HEADER -->
+<header class="header-area header-sticky wow slideInDown" data-wow-duration="0.75s" data-wow-delay="0s">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="main-nav">
+          <a href="#section-1" class="logo">
+            <img src="assets/images/logo.png" alt="WoOx Travel">
+          </a>
+          <ul class="nav">
+            <li><a href="#section-1" class="active">Home</a></li>
+            <li><a href="#visit-country">Destinations</a></li>
+            <li><a href="#packages">Packages</a></li>
+            <li><a href="#itinerary">Itinerary</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+          <a class="menu-trigger"><span>Menu</span></a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- BANNER -->
+<section id="section-1">
+  <div class="content-slider">
+    <input type="radio" id="banner1" class="sec-1-input" name="banner" checked>
+    <input type="radio" id="banner2" class="sec-1-input" name="banner">
+    <input type="radio" id="banner3" class="sec-1-input" name="banner">
+
+    <div class="slider">
+      <div id="top-banner-1" class="banner">
+        <div class="banner-inner-wrapper header-text">
+          <div class="main-caption">
+            <h2>Take a Glimpse Into The Beautiful Country Of:</h2>
+            <h1>Caribbean</h1>
+            <p class="mt-3">Experience pristine beaches and crystal clear waters</p>
+          </div>
+        </div>
+      </div>
+      <div id="top-banner-2" class="banner">
+        <div class="banner-inner-wrapper header-text">
+          <div class="main-caption">
+            <h2>Enjoy The Beauty Of:</h2>
+            <h1>Switzerland</h1>
+            <p class="mt-3">Majestic Alps and picturesque landscapes await</p>
+          </div>
+        </div>
+      </div>
+      <div id="top-banner-3" class="banner">
+        <div class="banner-inner-wrapper header-text">
+          <div class="main-caption">
+            <h2>Explore The Country Of:</h2>
+            <h1>France</h1>
+            <p class="mt-3">Discover romance, culture, and exquisite cuisine</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Banner Navigation Dots -->
+    <div class="slider-nav">
+      <label for="banner1" class="slider-dot" onclick="currentSlide(1)"></label>
+      <label for="banner2" class="slider-dot" onclick="currentSlide(2)"></label>
+      <label for="banner3" class="slider-dot" onclick="currentSlide(3)"></label>
+    </div>
+  </div>
+</section>
+
+<!-- VISIT COUNTRY -->
+<div class="visit-country" id="visit-country">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5">
+        <div class="section-heading wow fadeInLeft">
+          <h2>Visit One Of Our Countries Now</h2>
+          <p>Discover beautiful destinations and enjoy memorable travel experiences.</p>
+        </div>
+      </div>
+      <div class="col-lg-7">
+        <div class="row">
+          <div class="col-md-4 col-sm-6">
+            <div class="country-item text-center mb-4">
+              <div class="country-image mb-3" style="height: 150px; background-image: url('https://images.unsplash.com/photo-1519046904884-53103b34b206?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'); background-size: cover; border-radius: 10px;"></div>
+              <h4>Caribbean</h4>
+              <p>Tropical paradise with beautiful beaches</p>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6">
+            <div class="country-item text-center mb-4">
+              <div class="country-image mb-3" style="height: 150px; background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'); background-size: cover; border-radius: 10px;"></div>
+              <h4>Switzerland</h4>
+              <p>Alpine beauty and charming villages</p>
+            </div>
+          </div>
+          <div class="col-md-4 col-sm-6">
+            <div class="country-item text-center mb-4">
+              <div class="country-image mb-3" style="height: 150px; background-image: url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80'); background-size: cover; border-radius: 10px;"></div>
+              <h4>France</h4>
+              <p>Rich culture and iconic landmarks</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PACKAGES SECTION -->
+<section id="packages" class="py-5" style="background: #f8f9fa;">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-heading">Travel Packages</h2>
+        <p class="text-muted">Choose from our carefully curated travel packages</p>
+      </div>
+    </div>
+    
+    <div class="row">
+      <!-- Caribbean Package -->
+      <div class="col-lg-4 col-md-6">
+        <div class="package-card wow fadeInUp">
+          <div class="package-image" style="background-image: url('https://images.unsplash.com/photo-1519046904884-53103b34b206?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80');"></div>
+          <div class="package-content">
+            <h3>Caribbean Paradise</h3>
+            <p class="text-muted">7 Days & 6 Nights</p>
+            <div class="package-price">$5,299</div>
+            <ul class="package-features">
+              <li>⭐ Luxury Beach Resort Stay</li>
+              <li>🚤 Island Hopping Tour</li>
+              <li>🤿 Snorkeling & Water Sports</li>
+              <li>🍹 All-Inclusive Meals</li>
+              <li>✈️ Round-trip Flights</li>
+            </ul>
+            <a href="#contact" class="btn btn-primary w-100">Book Now</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Switzerland Package -->
+      <div class="col-lg-4 col-md-6">
+        <div class="package-card wow fadeInUp" data-wow-delay="0.2s">
+          <div class="package-image" style="background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80');"></div>
+          <div class="package-content">
+            <h3>Swiss Alpine Adventure</h3>
+            <p class="text-muted">8 Days & 7 Nights</p>
+            <div class="package-price">$7,499</div>
+            <ul class="package-features">
+              <li>🏔️ Mountain Resort Accommodation</li>
+              <li>🚂 Swiss Rail Pass</li>
+              <li>⛷️ Skiing & Snow Activities</li>
+              <li>🏰 City Tours Included</li>
+              <li>🍫 Chocolate Factory Tour</li>
+            </ul>
+            <a href="#contact" class="btn btn-primary w-100">Book Now</a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- France Package -->
+      <div class="col-lg-4 col-md-6">
+        <div class="package-card wow fadeInUp" data-wow-delay="0.4s">
+          <div class="package-image" style="background-image: url('https://images.unsplash.com/photo-1502602898657-3e91760cbb34?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80');"></div>
+          <div class="package-content">
+            <h3>French Romance Tour</h3>
+            <p class="text-muted">10 Days & 9 Nights</p>
+            <div class="package-price">$9,899</div>
+            <ul class="package-features">
+              <li>🗼 Paris & Nice Stay</li>
+              <li>🍷 Wine Tasting in Bordeaux</li>
+              <li>🎨 Louvre Museum Entry</li>
+              <li>🚗 Scenic French Riviera Tour</li>
+              <li>🍽️ Gourmet Dining Experience</li>
+            </ul>
+            <a href="#contact" class="btn btn-primary w-100">Book Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALL TO ACTION -->
+<div class="call-to-action" id="call-to-action" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-8">
+        <h2 class="text-white">Ready for Your Dream Vacation?</h2>
+        <h4 class="text-white">Limited Time Offer - Get 20% Off on All Packages!</h4>
+        <p class="text-white mt-3">Offer valid until December 31, 2025</p>
+      </div>
+      <div class="col-lg-4">
+        <div class="border-button">
+          <a href="#contact" class="btn btn-light btn-lg">Book Now & Save 20%</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ITINERARY -->
+<section id="itinerary" style="padding:80px 0;">
+  <div class="container">
+    <h2 style="text-align:center; margin-bottom:40px;">Sample Travel Itinerary</h2>
+    <div class="row">
+      <div class="col-lg-4 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title text-primary">🏝️ Caribbean Tour</h5>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Day 1: Arrival in Barbados, transfer to resort</li>
+              <li class="list-group-item">Day 2: Island hopping & beach day</li>
+              <li class="list-group-item">Day 3: Snorkeling & water sports</li>
+              <li class="list-group-item">Day 4: Cultural tour & local cuisine</li>
+              <li class="list-group-item">Day 5: Free day for relaxation</li>
+              <li class="list-group-item">Day 6: Sunset cruise & dinner</li>
+              <li class="list-group-item">Day 7: Departure</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title text-primary">🏔️ Switzerland Tour</h5>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Day 1: Arrival in Zurich</li>
+              <li class="list-group-item">Day 2: Train to Interlaken</li>
+              <li class="list-group-item">Day 3: Jungfraujoch - Top of Europe</li>
+              <li class="list-group-item">Day 4: Lucerne & mountain tours</li>
+              <li class="list-group-item">Day 5: Geneva city tour</li>
+              <li class="list-group-item">Day 6: Swiss chocolate factory</li>
+              <li class="list-group-item">Day 7: Free day for shopping</li>
+              <li class="list-group-item">Day 8: Departure</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title text-primary">🇫🇷 France Tour</h5>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Day 1: Arrival in Paris</li>
+              <li class="list-group-item">Day 2: Eiffel Tower & Louvre</li>
+              <li class="list-group-item">Day 3: Versailles Palace tour</li>
+              <li class="list-group-item">Day 4: Travel to Nice</li>
+              <li class="list-group-item">Day 5: French Riviera cruise</li>
+              <li class="list-group-item">Day 6: Monaco day trip</li>
+              <li class="list-group-item">Day 7: Bordeaux wine tour</li>
+              <li class="list-group-item">Day 8-9: Free days</li>
+              <li class="list-group-item">Day 10: Departure</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact" style="background: #333; color: white; padding: 60px 0;">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h3 class="mb-4">Contact Us</h3>
+        <p><i class="fas fa-envelope"></i> Email: info@wooxtravel.com</p>
+        <p><i class="fas fa-phone"></i> Phone: +91 98765 43210</p>
+        <p><i class="fas fa-map-marker-alt"></i> Address: 123 Travel Street, Mumbai, India</p>
+        <div class="social-icons mt-4">
+          <a href="#" class="text-white mx-3"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="text-white mx-3"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="text-white mx-3"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="text-white mx-3"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+        <hr class="my-4" style="border-color: #555;">
+        <p class="mt-3">© 2025 WoOx Travel. All rights reserved. Free hosted using GitHub Pages.</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- JS -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<script src="assets/js/owl-carousel.js"></script>
+<script src="assets/js/wow.js"></script>
+<script src="assets/js/custom.js"></script>
+
+<script>
+  // Banner Slider Auto-rotation
+  let slideIndex = 0;
+  const slides = document.querySelectorAll('.sec-1-input');
+  
+  function autoRotateSlides() {
+    slideIndex++;
+    if (slideIndex > slides.length) { slideIndex = 1; }
+    
+    slides.forEach((slide, index) => {
+      slide.checked = (index === slideIndex - 1);
+    });
+    
+    setTimeout(autoRotateSlides, 5000); // Change every 5 seconds
+  }
+  
+  // Manual slide control
+  function currentSlide(n) {
+    slideIndex = n - 1;
+    slides.forEach((slide, index) => {
+      slide.checked = (index === slideIndex);
+    });
+  }
+  
+  // Initialize auto-rotation
+  document.addEventListener('DOMContentLoaded', function() {
+    new WOW().init();
+    setTimeout(autoRotateSlides, 5000);
+    
+    // Smooth scroll for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if(targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if(targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>
